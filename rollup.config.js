@@ -9,6 +9,7 @@ export default {
     './bundler/ajv.js',
     './bundler/ajv-formats.js',
     './bundler/date-fns.js',
+    './bundler/g6.js',
   ],
   output: {
     dir: './public/deps',
