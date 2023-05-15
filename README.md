@@ -9,6 +9,8 @@
 ## 快速开始
 
 ```bash
+pnpm i
+
 # 使用rollup导出esm依赖包
 pnpm build:dep
 
