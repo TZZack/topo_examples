@@ -126,5 +126,10 @@ export const genLocalImportsMap = () => {
       version: 'latest',
       file: './deps/date-fns.js',
     },
+    '@antv/g6': {
+      pkg: '@antv/g6',
+      version: 'latest',
+      file: './deps/g6.js',
+    },
   }
 }

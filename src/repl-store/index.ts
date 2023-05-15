@@ -141,7 +141,6 @@ export class ReplStore implements Store {
     importMap.imports = {
       ...importMap.imports,
       ...genImports(this.versions),
-      '@antv/g6': './g6-4.8.10.js'
     }
     this.setImportMap(importMap as Required<ImportMap>)
   }
