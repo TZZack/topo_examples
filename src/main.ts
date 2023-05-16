@@ -8,6 +8,9 @@ import {
   addIconDefinitions,
 } from '@idux/components/icon'
 
+import svgIcon from '@/components/SvgIcon.vue'
+import 'virtual:svg-icons-register'
+
 // 如果不需要 reset 全局样式和滚动条样式，移除下面 2 行代码
 import '@idux/components/style/core/reset.default.css'
 import '@idux/components/style/core/reset-scroll.default.css'
@@ -21,4 +24,6 @@ import App from './App.vue'
 //   defaultSelectedAppId: 'repl',
 // }
 
-createApp(App).mount('#app')
+createApp(App)
+  .component('svg-icon', svgIcon)
+  .mount('#app')

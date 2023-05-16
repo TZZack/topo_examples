@@ -8,6 +8,7 @@ import { IduxResolver } from 'unplugin-vue-components/resolvers'
 import AutoImport from 'unplugin-auto-import/vite'
 import Inspect from 'vite-plugin-inspect'
 import { copyFilePlugin } from './bundler/plugins/copyFile'
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const pathSrc = path.resolve(__dirname, 'src')
 
@@ -41,6 +42,10 @@ export default defineConfig(async () => {
         presets: [presetUno()],
       }),
       Inspect(),
+      createSvgIconsPlugin({
+        iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+        symbolId: 'icon-[name]'
+      })
     ],
   }
 })

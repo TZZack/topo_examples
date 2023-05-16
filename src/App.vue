@@ -6,15 +6,21 @@
     >
       <div class="ixp-height-full" />
     </IxSpin>
-    <div class="flex flex-col ixp-height-full">
+    <div class="topo-playground flex flex-col ixp-height-full">
       <PlaygroundHeader :store="store" />
-      <Repl
-        class="grow"
-        auto-resize
-        show-compile-output
-        :store="store"
-        :clear-console="false"
-      />
+      <div class="h-[calc(100%-48px)] flex flex-row">
+        <PlaygroundFileTree
+          :on-selected-change="onNodeSelectChange"
+        />
+        <Repl
+          class="grow"
+          auto-resize
+          show-compile-output
+          :show-import-map="false"
+          :store="store"
+          :clear-console="false"
+        />
+      </div>
     </div>
   </IxMessageProvider>
 </template>
@@ -22,17 +28,12 @@
 <script lang="ts" setup>
 import { ReplStore } from '@/repl-store'
 import { Repl } from '@vue/repl'
+import type { TreeNode } from '@idux/components/tree'
+import type { VKey } from '@idux/cdk/utils'
 
 const isLoading = ref(true)
 
-// experimental features
-// import type {  SFCOptions } from '@vue/repl'
-// const sfcOptions: SFCOptions = {
-//   script: {
-//     reactivityTransform: true,
-//   },
-// }
-
+// todo: 考虑把这个replstore实例存到pinia中
 const store = new ReplStore({
   serializedState: location.hash.slice(1),
 })
@@ -42,9 +43,27 @@ store.init().then(() => {
 })
 
 watchEffect(() => history.replaceState({}, '', store.serialize()))
+
+const onNodeSelectChange = ( 
+  selectedKeys: VKey[],
+  selectedNodes: TreeNode[]
+  ) => {
+    store.setActive(selectedNodes[0].label ?? '')
+}
 </script>
 
-<style scoped>
+<style scoped lang="less">
+
+.topo-playground {
+  :deep(.vue-repl .file-selector) {
+    display: none;
+  }
+
+  :deep(.editor-container) {
+    height: 100%;
+    border-top: 1px solid #e1e5eb;
+  }
+}
 .ixp-height-full {
   height: 100vh;
 }

@@ -5,22 +5,13 @@
 <script setup lang="ts">
 import {Graph} from '@antv/g6'
 import {ref, onMounted} from 'vue'
+import { data } from './const.ts'
 
 const container = ref(null)
 onMounted(() => {
   if (!container.value) {
     return
   }
-  const data = {
-    nodes: [
-      {
-        id: 'circle',
-        label: 'Circle',
-        x: 250,
-        y: 150,
-      },
-    ],
-  };
   const graph = new Graph({
     container: container.value as HTMLElement,
     width: 600,
