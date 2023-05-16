@@ -3,16 +3,25 @@ import * as defaultCompiler from 'vue/compiler-sfc'
 import { File, compileFile } from '@vue/repl'
 import type { OutputModes, SFCOptions, Store, StoreState } from '@vue/repl'
 import type { ImportMap, PendingCompiler, ReplStoreParam, VersionKey, VersionRecord } from '@/types'
-import { defaultFile, genImportsMap, genLocalImportsMap, playgroundApp, setupIdux } from '@/const'
+import { 
+  defaultConstFile, 
+  defaultFile, 
+  genImportsMap, 
+  genLocalImportsMap, 
+  playgroundApp, 
+  setupIdux,
+ } from '@/const'
 import { decodeData, encodeData, genLink } from '@/utils'
 import playgroundAppCode from '@/template/PlaygroundApp.vue?raw'
 import defaultCode from '@/template/App.vue?raw'
+import defaultConstCode from '@/template/const.ts?raw'
 import iduxCode from '@/template/setupIdux.js?raw'
 
 const getInitFiles = (serializedState = '') => {
   const files: StoreState['files'] = {
     [playgroundApp]: new File(playgroundApp, playgroundAppCode, true),
     [defaultFile]: new File(defaultFile, defaultCode),
+    [defaultConstFile]: new File(defaultConstFile, defaultConstCode),
   }
   if (serializedState) {
     try {
