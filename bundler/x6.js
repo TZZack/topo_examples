@@ -1,0 +1,1 @@
+export * from '@antv/x6'
