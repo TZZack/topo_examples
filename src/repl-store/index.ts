@@ -2,9 +2,9 @@ import { reactive, watchEffect } from 'vue'
 import * as defaultCompiler from 'vue/compiler-sfc'
 import { File, compileFile } from '@tzzack/vue-repl'
 import type { OutputModes, SFCOptions, Store, StoreState } from '@tzzack/vue-repl'
-import type { ImportMap, PendingCompiler, ReplStoreParam, VersionKey, VersionRecord } from '@/types'
+import type { ImportMap } from '@/types/index'
+import type { PendingCompiler, ReplStoreParam, VersionKey, VersionRecord } from '@/types/replStore'
 import { 
-  defaultConstFile, 
   defaultFile, 
   genImportsMap, 
   genLocalImportsMap, 
@@ -14,16 +14,12 @@ import {
 import { decodeData, encodeData, genLink } from '@/utils'
 import playgroundAppCode from '@/template/PlaygroundApp.vue?raw'
 import defaultCode from '@/template/App.vue?raw'
-import defaultConstCode from '@/template/node/const.ts?raw'
-import utilCode from '@/template/util/index.ts?raw'
 import iduxCode from '@/template/setupIdux.js?raw'
 
 const getInitFiles = (serializedState = '') => {
   const files: StoreState['files'] = {
     [playgroundApp]: new File(playgroundApp, playgroundAppCode, true),
     [defaultFile]: new File(defaultFile, defaultCode),
-    [defaultConstFile]: new File(defaultConstFile, defaultConstCode),
-    'util/index.ts': new File('util/index.ts', utilCode)
   }
   if (serializedState) {
     try {

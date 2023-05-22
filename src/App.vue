@@ -11,11 +11,12 @@
       <div class="h-[calc(100%-48px)] flex flex-row">
         <PlaygroundFileTree
           :on-selected-change="onNodeSelectChange"
+          :data-source="treeData"
         />
         <Repl
           class="grow"
           auto-resize
-          show-compile-output
+          :show-compile-output="false"
           :show-import-map="false"
           :store="store"
           :clear-console="false"
@@ -30,6 +31,19 @@ import { ReplStore } from '@/repl-store'
 import { Repl } from '@tzzack/vue-repl'
 import type { TreeNode } from '@idux/components/tree'
 import type { VKey } from '@idux/cdk/utils'
+import { mockData } from '@/mock/er'
+import {testApi} from '@/api/index'
+import {FileType} from '@/types/playground'
+
+interface FileInfo {
+  label: string
+  key: VKey
+  fileType: FileType
+  path: string
+  fileName: string
+  fileCode: string
+  parent: string | null
+}
 
 const isLoading = ref(true)
 
@@ -48,8 +62,22 @@ const onNodeSelectChange = (
   selectedKeys: VKey[],
   selectedNodes: TreeNode[]
   ) => {
-    store.setActive(selectedNodes[0].fullPath ?? '')
+    store.setActive(selectedNodes[0].label ?? '')
 }
+
+const treeData = ref<FileInfo[]>([])
+const mock = mockData() as FileInfo[]
+treeData.value = mock
+
+const filesData = {} as Record<string, string>
+
+mock.filter(item => item.fileType !== FileType.fold).forEach((item: FileInfo) => {
+  filesData[item.fileName] = item.fileCode
+})
+
+testApi()
+
+store.setFiles(filesData, 'index.vue')
 </script>
 
 <style scoped lang="less">

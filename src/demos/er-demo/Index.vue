@@ -1,11 +1,11 @@
 <template>
-  <div ref="container"></div>
+  <div ref="container" />
 </template>
 
 <script setup lang="ts">
 import {Graph} from '@antv/g6'
-import {ref, onMounted} from 'vue'
-import { data } from './node/const.ts'
+import {onMounted, ref} from 'vue'
+import { data } from './const.ts'
 
 const container = ref(null)
 onMounted(() => {
@@ -36,30 +36,30 @@ onMounted(() => {
         show: true,
       },
     },
-  });
+  })
 
-  graph.data(data);
-  graph.render();
+  graph.data(data)
+  graph.render()
 
   graph.on('node:mouseenter', (evt) => {
-    const { item } = evt;
-    item && graph.setItemState(item, 'active', true);
-  });
+    const { item } = evt
+    item && graph.setItemState(item, 'active', true)
+  })
 
   graph.on('node:mouseleave', (evt) => {
-    const { item } = evt;
-    item && graph.setItemState(item, 'active', false);
-  });
+    const { item } = evt
+    item && graph.setItemState(item, 'active', false)
+  })
 
   graph.on('node:click', (evt) => {
-    const { item } = evt;
-    item && graph.setItemState(item, 'selected', true);
-  });
-  graph.on('canvas:click', (evt) => {
+    const { item } = evt
+    item && graph.setItemState(item, 'selected', true)
+  })
+  graph.on('canvas:click', () => {
     graph.getNodes().forEach((node) => {
-      graph.clearItemStates(node);
-    });
-  });
+      graph.clearItemStates(node)
+    })
+  })
 })
 
 </script>
