@@ -19,7 +19,7 @@ import iduxCode from '@/template/setupIdux.js?raw'
 const getInitFiles = (serializedState = '') => {
   const files: StoreState['files'] = {
     [playgroundApp]: new File(playgroundApp, playgroundAppCode, true),
-    [defaultFile]: new File(defaultFile, defaultCode),
+    [defaultFile]: new File(defaultFile, defaultCode)
   }
   if (serializedState) {
     try {
