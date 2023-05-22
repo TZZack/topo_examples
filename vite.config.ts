@@ -11,6 +11,8 @@ import { copyFilePlugin } from './bundler/plugins/copyFile'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
 const pathSrc = path.resolve(__dirname, 'src')
+const apiUrl = 'http://localhost:3003'
+
 
 export default defineConfig(async () => {
 
@@ -22,7 +24,20 @@ export default defineConfig(async () => {
       },
     },
     server: {
+      host: '0.0.0.0',
       port: 2022,
+      proxy: {
+        '/topo': {
+            target: apiUrl,
+            secure: false,
+            changeOrigin: true
+        },
+        '/playground': {
+            target: apiUrl,
+            secure: false,
+            changeOrigin: true
+        }
+      }
     },
     plugins: [
       copyFilePlugin(),

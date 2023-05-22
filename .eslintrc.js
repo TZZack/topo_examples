@@ -71,6 +71,7 @@ module.exports = {
         'max': 1
       },
     }],
+    'vue/multi-word-component-names': 'off',
     'vue/html-closing-bracket-spacing': 'error',
     'vue/require-default-prop': 'error',
     'vue/require-explicit-emits': 'error',

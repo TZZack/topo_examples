@@ -5,7 +5,6 @@
       v-model:selected-keys="treeSelectedKeys" 
       v-bind="$attrs"
       :disabled="treeNodeDisable"
-      :data-source="treeData"
       :show-line="true"
       :auto-height="true"
       blocked  
@@ -24,12 +23,7 @@
 import type { TreeNode } from '@idux/components/tree'
 import type { VKey } from '@idux/cdk/utils'
 import { ref } from 'vue'
-
-enum FileType {
-  fold = 'fold',
-  vue = 'vue',
-  ts = 'ts'
-}
+import {FileType} from '@/types/playground'
 
 const prefixIconMap = {
   [FileType.fold]: '',
@@ -47,48 +41,6 @@ const treeNodeDisable = (node: TreeNode) => {
 
   return treeSelectedKeys.value.includes(node.key as VKey)
 }
-
-const treeData = ref<TreeNode[]>([
-  {
-    label: 'src',
-    key: '0',
-    fileType: 'fold',
-    children: [
-      {
-        label: 'App.vue',
-        key: 'root',
-        fileType: 'vue',
-        fullPath: 'App.vue',
-      },
-      {
-        label: 'node',
-        key: '0-1',
-        fileType: 'fold',
-        children: [
-          {
-            label: 'const.ts',
-            key: '0-1-1',
-            fileType: 'ts',
-            fullPath: 'node/const.ts',
-          },
-        ]
-      },
-      {
-        label: 'util',
-        key: '0-2',
-        fileType: 'fold',
-        children: [
-          {
-            label: 'index.ts',
-            key: '0-2-1',
-            fileType: 'ts',
-            fullPath: 'util/index.ts',
-          },
-        ]
-      }
-    ],
-  },
-])
 </script>
 
 <style lang="less" scoped>
@@ -96,7 +48,7 @@ const treeData = ref<TreeNode[]>([
     width: 300px;
     height: 100%;
     border-right: 1px solid #e1e5eb;
-    padding: 38px 16px 0 16px;
+    padding: 0 16px;
 
     :deep(.ix-tree-node-disabled .ix-tree-node-content) {
       cursor: default;
