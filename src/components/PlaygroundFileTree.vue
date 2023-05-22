@@ -57,13 +57,35 @@ const treeData = ref<TreeNode[]>([
       {
         label: 'App.vue',
         key: 'root',
-        fileType: 'vue'
+        fileType: 'vue',
+        fullPath: 'App.vue',
       },
       {
-        label: 'const.ts',
+        label: 'node',
         key: '0-1',
-        fileType: 'ts'
+        fileType: 'fold',
+        children: [
+          {
+            label: 'const.ts',
+            key: '0-1-1',
+            fileType: 'ts',
+            fullPath: 'node/const.ts',
+          },
+        ]
       },
+      {
+        label: 'util',
+        key: '0-2',
+        fileType: 'fold',
+        children: [
+          {
+            label: 'index.ts',
+            key: '0-2-1',
+            fileType: 'ts',
+            fullPath: 'util/index.ts',
+          },
+        ]
+      }
     ],
   },
 ])
