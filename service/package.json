@@ -15,6 +15,7 @@
     "mongodb": "^5.5.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.17"
+    "@types/express": "^4.17.17",
+    "esno": "^0.16.3"
   }
 }
