@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import {Graph} from '@antv/g6'
 import {ref, onMounted} from 'vue'
-import { data } from './const.ts'
+import { data } from './node/const.ts'
 
 const container = ref(null)
 onMounted(() => {

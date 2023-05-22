@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import '@vue/repl/style.css'
+import '@tzzack/vue-repl/style.css'
 import 'uno.css'
 import '@idux/components/default.css'
 

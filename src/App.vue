@@ -27,7 +27,7 @@
 
 <script lang="ts" setup>
 import { ReplStore } from '@/repl-store'
-import { Repl } from '@vue/repl'
+import { Repl } from '@tzzack/vue-repl'
 import type { TreeNode } from '@idux/components/tree'
 import type { VKey } from '@idux/cdk/utils'
 
@@ -48,7 +48,7 @@ const onNodeSelectChange = (
   selectedKeys: VKey[],
   selectedNodes: TreeNode[]
   ) => {
-    store.setActive(selectedNodes[0].label ?? '')
+    store.setActive(selectedNodes[0].fullPath ?? '')
 }
 </script>
 
