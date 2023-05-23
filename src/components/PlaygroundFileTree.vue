@@ -32,7 +32,7 @@ const prefixIconMap = {
 }
 
 const treeExpandKeys = ref<VKey[]>(['0'])
-const treeSelectedKeys = ref<VKey[]>(['root'])
+const treeSelectedKeys = ref<VKey[]>(['0-1'])
 
 const treeNodeDisable = (node: TreeNode) => {
   if (node.fileType === FileType.fold) {
@@ -45,7 +45,7 @@ const treeNodeDisable = (node: TreeNode) => {
 
 <style lang="less" scoped>
 .playground-file-tree {
-    width: 300px;
+    min-width: 300px;
     height: 100%;
     border-right: 1px solid #e1e5eb;
     padding: 0 16px;

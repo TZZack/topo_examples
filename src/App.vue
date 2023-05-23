@@ -29,21 +29,9 @@
 <script lang="ts" setup>
 import { ReplStore } from '@/repl-store'
 import { Repl } from '@tzzack/vue-repl'
-import type { TreeNode } from '@idux/components/tree'
-import type { VKey } from '@idux/cdk/utils'
-import { mockData } from '@/mock/er'
-import {testApi} from '@/api/index'
-import {FileType} from '@/types/playground'
-
-interface FileInfo {
-  label: string
-  key: VKey
-  fileType: FileType
-  path: string
-  fileName: string
-  fileCode: string
-  parent: string | null
-}
+import {getDemo1} from '@/api/index'
+import {FileInfo, FileType} from '@/types/playground'
+import {transformDataToTree} from '@/utils/business'
 
 const isLoading = ref(true)
 
@@ -52,32 +40,32 @@ const store = new ReplStore({
   serializedState: location.hash.slice(1),
 })
 
-store.init().then(() => {
-  isLoading.value = false
-})
-
 watchEffect(() => history.replaceState({}, '', store.serialize()))
 
 const onNodeSelectChange = ( 
-  selectedKeys: VKey[],
-  selectedNodes: TreeNode[]
+  selectedKeys: string[],
+  selectedNodes: FileInfo[]
   ) => {
-    store.setActive(selectedNodes[0].label ?? '')
+    store.setActive(selectedNodes[0]?.path)
 }
 
 const treeData = ref<FileInfo[]>([])
-const mock = mockData() as FileInfo[]
-treeData.value = mock
-
 const filesData = {} as Record<string, string>
 
-mock.filter(item => item.fileType !== FileType.fold).forEach((item: FileInfo) => {
-  filesData[item.fileName] = item.fileCode
+onMounted(async () => {
+  const { data } = await getDemo1()
+  const fileData = data.fileList as FileInfo[]
+  treeData.value = transformDataToTree(fileData)
+  fileData.filter(item => item.fileType !== FileType.fold).forEach((item: FileInfo) => {
+    filesData[item.path] = item.fileCode
+  })
+
+  store.init().then(() => {
+    isLoading.value = false
+  })
+
+  store.setFiles(filesData, 'index.vue')
 })
-
-testApi()
-
-store.setFiles(filesData, 'index.vue')
 </script>
 
 <style scoped lang="less">
@@ -90,6 +78,19 @@ store.setFiles(filesData, 'index.vue')
   :deep(.editor-container) {
     height: 100%;
     border-top: 1px solid #e1e5eb;
+  }
+
+  :deep(.vue-repl .tab-buttons) {
+    display: none;
+  }
+
+  :deep(.vue-repl .right) {
+    border: 1px solid #e1e5eb;
+    border-right: none;
+  }
+
+  :deep(.output-container) {
+    height: 100%;
   }
 }
 .ixp-height-full {

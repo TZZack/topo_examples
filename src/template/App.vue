@@ -1,3 +1,3 @@
 <template>
-  <div>hello</div>
+  <div>welcome to topo playground</div>
 </template>
