@@ -10,9 +10,9 @@ export const fetchVersions = (pkg: string) => {
     .json<string[]>().data
 }
 
-export const testApi = async () => {
+export const getDemo1 = async () => {
   const axiosResponse = await axios<ApiReturn>({
-      url: '/topo/test',
+      url: 'playground/demo1',
       method: 'GET'
   })
   return axiosResponse.data
