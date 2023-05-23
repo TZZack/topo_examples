@@ -55,7 +55,7 @@
     "@antv/x6": "^2.10.1",
     "@idux/cdk": "1.4.0",
     "@idux/components": "1.4.0",
-    "@tzzack/vue-repl": "^1.0.0",
+    "@tzzack/vue-repl": "^1.0.1",
     "@vueuse/core": "^7.7.1",
     "axios": "^1.4.0",
     "compare-versions": "^4.1.4",
