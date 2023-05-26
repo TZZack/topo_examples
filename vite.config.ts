@@ -14,7 +14,6 @@ import { viteMockServe } from 'vite-plugin-mock'
 const pathSrc = path.resolve(__dirname, 'src')
 const apiUrl = 'http://localhost:3003'
 
-
 export default defineConfig(async () => {
 
   return {
@@ -28,12 +27,7 @@ export default defineConfig(async () => {
       host: '0.0.0.0',
       port: 2022,
       proxy: {
-        '/topo': {
-            target: apiUrl,
-            secure: false,
-            changeOrigin: true
-        },
-        '/playground': {
+        '/api': {
             target: apiUrl,
             secure: false,
             changeOrigin: true
