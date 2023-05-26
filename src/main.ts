@@ -1,3 +1,6 @@
+// 样式
+import '@/style/index.less'
+
 import { createApp } from 'vue'
 import '@tzzack/vue-repl/style.css'
 import 'uno.css'
@@ -19,11 +22,13 @@ import '@idux/components/style/core/reset-scroll.default.css'
 addIconDefinitions(IDUX_ICON_DEPENDENCIES)
 
 import App from './App.vue'
+import router from './router/index'
 
 // window.VUE_DEVTOOLS_CONFIG = {
 //   defaultSelectedAppId: 'repl',
 // }
 
 createApp(App)
+  .use(router)
   .component('svg-icon', svgIcon)
   .mount('#app')

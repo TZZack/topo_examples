@@ -2,7 +2,7 @@
   <div class="playground-file-tree">
     <IxTree 
       v-model:expanded-keys="treeExpandKeys"
-      v-model:selected-keys="treeSelectedKeys" 
+      v-model:selected-keys="treeSelectedKeys"
       v-bind="$attrs"
       :disabled="treeNodeDisable"
       :show-line="true"
@@ -48,6 +48,7 @@ const treeNodeDisable = (node: TreeNode) => {
     min-width: 300px;
     height: 100%;
     border-right: 1px solid #e1e5eb;
+    border-top: 1px solid #e1e5eb;
     padding: 0 16px;
 
     :deep(.ix-tree-node-disabled .ix-tree-node-content) {

@@ -5,3 +5,7 @@ dist
 public
 src/types/dts/components.d.ts
 src/types/dts/auto-imports.d.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
