@@ -59,7 +59,8 @@ export default defineConfig(async () => {
       viteMockServe({
         mockPath: 'mock',
         // todo: 先开着，等环境变量引入后生产环境不开mock
-        enable: true
+        enable: true,
+        watchFiles: false,
       })
     ],
   }

@@ -1,5 +1,7 @@
-import axios from './axios'
-import type { ApiReturn } from './interface'
+import axios from '@/utils/axios'
+import type { TransformResult } from '@/utils/axios/types'
+
+import {CaseTree} from './types'
 
 export const fetchVersions = (pkg: string) => {
   return useFetch(
@@ -11,9 +13,14 @@ export const fetchVersions = (pkg: string) => {
 }
 
 export const getDemo1 = async () => {
-  const axiosResponse = await axios<ApiReturn>({
+  const axiosResponse = await axios.get({
       url: 'playground/demo1',
-      method: 'GET'
   })
   return axiosResponse.data
+}
+
+export const fetchCaseTree = async () => {
+  return await axios.get<TransformResult<CaseTree[]>>({
+    url: 'api/cases',
+  })
 }

@@ -25,15 +25,6 @@
       >
         Share
       </IxButton>
-      <IxButton
-        size="sm"
-        mode="link"
-        href="https://github.com/IDuxFE/idux-playground"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GitHub
-      </IxButton>
     </IxSpace>
   </div>
 </template>
