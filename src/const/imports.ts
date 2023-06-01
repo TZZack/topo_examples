@@ -1,4 +1,4 @@
-import { VersionRecord } from '@/types'
+import { VersionRecord } from '@/types/replStore'
 import * as compInfo from '@idux/components'
 
 const iduxCdks = [

@@ -75,6 +75,9 @@ module.exports = {
     'vue/html-closing-bracket-spacing': 'error',
     'vue/require-default-prop': 'error',
     'vue/require-explicit-emits': 'error',
+    'vue/v-on-event-hyphenation': 'off',
+    // 放开any
+    '@typescript-eslint/no-explicit-any': 'off',
   },
   ignorePatterns: ['dist', 'node_modules'],
 }
