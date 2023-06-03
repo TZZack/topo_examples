@@ -1,9 +1,11 @@
 <template>
   <IxLayout class="case-list">
     <IxLayoutHeader class="case-list__header">
-      <div>案例平台库</div>
+      <CategoryHeader />
     </IxLayoutHeader>
-    <IxLayoutSider class="case-list__sider">
+    <IxLayoutSider
+      class="case-list__sider"
+    >
       <CategorySider :data="menuData" />
     </IxLayoutSider>
     <IxLayoutContent class="case-list__content">
@@ -20,8 +22,9 @@ import { MenuData } from '@idux/components/menu'
 import { fetchCaseTree } from '@/api/index'
 import type { SubTypeNode } from '@/api/types'
 
-import CategorySider from './Sider.vue'
-import CategoryContent from './Content.vue'  
+import CategorySider from './CategorySider.vue'
+import CategoryContent from './CategoryContent.vue'  
+import CategoryHeader from './CategoryHeader.vue'
 
 const menuData: MenuData[] = [] // 左侧sider数据
 const contentData: SubTypeNode[] = [] // 内容区域数据

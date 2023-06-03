@@ -1,5 +1,6 @@
 <template>
   <IxMenu
+    v-model:selectedKeys="selectedKeys"
     mode="inline"
     :expanded-keys="expandedKeys"
     :data-source="dataSource"
@@ -18,33 +19,16 @@ const dataSource: MenuData[] = [
   {
     type: 'sub',
     key: 'sub1',
-    label: 'Sub Menu 1',
+    label: '案例',
+    icon: 'dashboard',
     children: [
-      { key: 'item1', label: 'Item 1' },
-      { key: 'item2', label: 'Item 2' },
-    ],
-  },
-  {
-    type: 'sub',
-    key: 'sub4',
-    label: 'Menu Sub 4',
-    children: [
-      { key: 'item10', label: 'Item 10' },
-      { key: 'item11', label: 'Item 11' },
-    ],
-  },
-  {
-    type: 'sub',
-    key: 'sub5',
-    label: 'Menu Sub 5',
-    children: [
-      { key: 'item12', label: 'Item 12' },
-      { key: 'item13', label: 'Item 13' },
+      { key: 'item1', label: '示例' },
     ],
   },
 ]
 
-const expandedKeys = ref<VKey[]>([])
+const expandedKeys = ref<VKey[]>(['sub1'])
+const selectedKeys = ref<VKey[]>(['item1'])
 
 // 展开方式为手风琴式
 const onExpandedChange = (keys: VKey[]) => {
@@ -53,7 +37,7 @@ const onExpandedChange = (keys: VKey[]) => {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .category-sider {
   width: 100%;
   height: 100%;
