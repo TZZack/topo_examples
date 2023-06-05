@@ -55,7 +55,7 @@ const treeData = ref<FileInfo[]>([])
 const filesData = {} as Record<string, string>
 
 onMounted(async () => {
-  const { data } = await getDemo1()
+  const data = await getDemo1()
   const fileData = data.fileList as FileInfo[]
   treeData.value = transformDataToTree(fileData)
   fileData.filter(item => item.fileType !== FileType.fold).forEach((item: FileInfo) => {
